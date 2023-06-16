@@ -1,0 +1,48 @@
+Задание 1.
+
+import re
+
+text = '''Кошки не похожи на людей: Кошки — это кошки. 
+Люди носят шляпы и пальто — Кошки часто ходят без одёжки. 
+Кошки могут среди бела дня Полежать спокойно у огня. 
+Кошки не болтают чепухи, Не играют в домино и в шашки, 
+Не обязаны писать стихи, — Им плевать на разные бумажки… 
+Людям не сойти с протоптанной дорожки, Ну, а кошки — это кошки!'''
+
+textcat = 'кошк'
+textmouse = 'мышк'
+
+# Находим все вхождения слова
+text_find = re.findall(textcat, text, flags=re.IGNORECASE)
+
+# Заменяем найденные слова
+text_new = re.sub(textcat, textmouse, text, flags=re.IGNORECASE)
+
+print(f'Слово встречается {len(text_find)} раз(а)')
+print(text_new)
+
+Задание 2.
+
+log = input('Введите логин (логин должен состоять из букв)\n')
+pas = input('Введите пароль (в пароле должны быть буквы, цифры, буква верхнего регистра и один из знаков !@#$%^&*\n')
+pas1 = input('Подтвердите пароль повторным вводом\n')
+
+if log.isalpha():
+    print('Формат логина верный')
+else:
+    print('Ошибка формата логина')
+   
+pasbig = any(a.isupper() for a in pas)
+paslow = any(a.islower() for a in pas)
+pasnum = any(a.isdigit() for a in pas)
+passpec = any(a in '!@#$%^&*' for a in pas)
+
+if pasbig and pasnum and passpec and paslow:
+    print('Формат пароля верный')
+else:
+    print('Ошибка формата пароля')
+
+if pas == pas1:
+    print('Пароли совпадают')
+else:
+    print('Пароли не совпадают')
